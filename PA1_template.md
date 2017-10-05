@@ -60,17 +60,18 @@ head(total_steps_pd)
 ```r
 library(ggplot2)
 
-ggplot(total_steps_pd, aes(date, steps, fill = steps)) +  
-geom_histogram(aes(fill = steps), position = "dodge", stat="identity") +  
+ggplot(total_steps_pd, aes(total_steps_pd$steps)) +  
+geom_histogram(breaks=seq(0, 25000, by=5000), col = "dodgerblue4",fill="dodgerblue4") +  
 theme(axis.title.x = element_text(colour = "dodgerblue4", face = "bold"),
-      axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, colour = "dodgerblue4"), 
+      axis.text.x = element_text(colour = "dodgerblue4"),
       axis.title.y = element_text(colour = "firebrick2", face = "bold"),
       axis.text.y = element_text(colour = "firebrick2"),
       legend.text = element_text(colour = "firebrick2"),
       legend.title = element_text(colour = "dodgerblue4", face = "bold"),
-      plot.title = element_text(hjust = 0.5, colour = "dodgerblue4", face = "bold")) +  
-xlab("Days") +  
-ylab("Total Steps Per Day") +  
+      plot.title = element_text(hjust = 0.5, colour = "dodgerblue4", face = "bold")) + 
+scale_y_continuous(breaks = seq(0, 30, by=5)) +  
+xlab("Steps") +  
+ylab("Frequency") + 
 labs(fill = "Steps") +  
 ggtitle("Histogram of The Total Number of Steps Taken Each Day")
 ```
@@ -351,18 +352,19 @@ head(total_steps_pd_ba)
 
 
 ```r
-ggplot(total_steps_pd_ba, aes(date, steps, fill = type)) +  
-geom_histogram(aes(fill = type),position = "dodge", stat="identity") +  
+ggplot(total_steps_pd_ba, aes(total_steps_pd_ba$steps, fill = total_steps_pd_ba$type)) +  
+geom_histogram(breaks=seq(0, 25000, by=5000),position = "identity") +  
 theme(axis.title.x = element_text(colour = "dodgerblue4", face = "bold"),
-      axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, colour = "dodgerblue4"), 
+      axis.text.x = element_text(colour = "dodgerblue4"),
       axis.title.y = element_text(colour = "firebrick2", face = "bold"),
       axis.text.y = element_text(colour = "firebrick2"),
-      legend.title = element_text(colour = "dodgerblue4", face = "bold"),
       legend.text = element_text(colour = "firebrick2"),
+      legend.title = element_text(colour = "dodgerblue4", face = "bold"),
       plot.title = element_text(hjust = 0.5, colour = "dodgerblue4", face = "bold")) + 
-scale_fill_manual(values = c("dodgerblue4","steelblue3")) +  
-xlab("Days") +  
-ylab("Total Steps Per Day") +  
+scale_y_continuous(breaks = seq(0, 35, by=5)) +  
+scale_fill_manual(values = c("firebrick2","dodgerblue4")) +  
+xlab("Steps") +  
+ylab("Frequency") + 
 labs(fill = "Steps") +  
 ggtitle("Histogram of The Total Number of Steps Taken Each Day Before/After Filling NAs")
 ```
